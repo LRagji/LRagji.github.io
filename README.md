@@ -1,2 +1,2 @@
-# LRagji.github.io
-This is my primary website
+# Elemento
+This repo contains code for a polymer component which uses gyro capabilities of chrome browser
