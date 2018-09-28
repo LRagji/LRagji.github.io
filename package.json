@@ -1,0 +1,22 @@
+{
+  "name": "lragji.github.io",
+  "version": "1.0.0",
+  "description": "This is not a node package, but just a way to host dev server for my experiments on my local machine ",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LRagji/LRagji.github.io.git"
+  },
+  "author": "Laukik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LRagji/LRagji.github.io/issues"
+  },
+  "homepage": "https://github.com/LRagji/LRagji.github.io#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
