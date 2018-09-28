@@ -4,7 +4,8 @@
   "description": "This is not a node package, but just a way to host dev server for my experiments on my local machine ",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve":"node main.js"
   },
   "repository": {
     "type": "git",
