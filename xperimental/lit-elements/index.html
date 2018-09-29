@@ -5,10 +5,27 @@
     <script src="https://unpkg.com/@webcomponents/webcomponentsjs@next/webcomponents-loader.js"></script>
     <script src="./componentX.js"
             type="module"></script>
+    <script src="./gyro-element.js"
+            type="module"></script>
+
+    <style>
+        .dot {
+            height: 100px;
+            width: 100px;
+            background-image: linear-gradient(white 49%, black 51%);
+            border: 2px solid gray;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .transform {
+            transform: rotate(20deg);
+        }
+    </style>
 </head>
 
 <body>
-    <my-element mood="Amazing!!"></my-element>
+    <gyro-element></gyro-element>
 </body>
 
 </html>
