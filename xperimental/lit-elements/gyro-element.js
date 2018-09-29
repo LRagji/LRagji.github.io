@@ -28,19 +28,16 @@ class gyroElement extends LitElement {
     this.beta = 0;
     this.gamma = 0;
     if (window.DeviceMotionEvent) {
-      window.addEventListener('devicemotion', this.handleMotion);
-      // setInterval(() => {
-      //   this.handleMotion({
-      //     rotationRate: {
-      //       alpha: (Math.random() * 100),
-      //       beta: (Math.random() * 100),
-      //       gamma: (Math.random() * 100)
-      //     }
-      //   })
-      // }, 2000);
-    }
-    else{
-      alert("Not applicable");
+      //window.addEventListener('devicemotion', this.handleMotion);
+      setInterval(() => {
+        this.handleMotion({
+          rotationRate: {
+            alpha: (Math.random() * 100),
+            beta: (Math.random() * 100),
+            gamma: (Math.random() * 100)
+          }
+        })
+      }, 1000);
     }
   }
 
@@ -48,12 +45,16 @@ class gyroElement extends LitElement {
     // if (e.rotationRate.alpha & e.rotationRate.beta & e.rotationRate.gamma) {
     //   this.isSupported = false;
     // } else {
-    alert("Event:" + e.rotationRate.alpha);
-    this.alpha = Math.round(e.rotationRate.alpha);
-    this.beta = Math.round(e.rotationRate.beta);
-    this.gamma = Math.round(e.rotationRate.gamma);
-    this.isSupported = true;
-    alert(this.alpha);
+    // alert("Event:" + e.rotationRate.alpha);
+    if (Math.abs(this.alpha - e.rotationRate.alpha) > 10)
+      this.alpha = Math.round(e.rotationRate.alpha);
+    if (Math.abs(this.beta - e.rotationRate.beta) > 10)
+      this.beta = Math.round(e.rotationRate.beta);
+    if (Math.abs(this.gamma - e.rotationRate.gamma) > 10)
+      this.gamma = Math.round(e.rotationRate.gamma);
+    if (this.isSupported != true)
+      this.isSupported = true;
+    //alert(this.alpha);
     //}
   }
 
