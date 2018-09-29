@@ -45,11 +45,12 @@ class gyroElement extends LitElement {
     // if (e.rotationRate.alpha & e.rotationRate.beta & e.rotationRate.gamma) {
     //   this.isSupported = false;
     // } else {
-      this.alpha = Math.round(e.rotationRate.alpha);
-      this.beta = Math.round(e.rotationRate.beta);
-      this.gamma = Math.round(e.rotationRate.gamma);
-      this.isSupported = true;
-      alert(this.alpha);
+    alert("Event:" + e.rotationRate.alpha);
+    this.alpha = Math.round(e.rotationRate.alpha);
+    this.beta = Math.round(e.rotationRate.beta);
+    this.gamma = Math.round(e.rotationRate.gamma);
+    this.isSupported = true;
+    alert(this.alpha);
     //}
   }
 
