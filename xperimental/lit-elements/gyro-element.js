@@ -28,14 +28,14 @@ class gyroElement extends LitElement {
     this.beta = 0;
     this.gamma = 0;
     if (window.DeviceMotionEvent) {
-      //window.addEventListener('devicemotion', this.handleMotion);
-      setInterval(() => {
-        this.handleMotion({
-          rotationRate: {
-            alpha: (Math.random() * 100)
-          }
-        })
-      }, 2000);
+      window.addEventListener('devicemotion', this.handleMotion);
+      // setInterval(() => {
+      //   this.handleMotion({
+      //     rotationRate: {
+      //       alpha: (Math.random() * 100)
+      //     }
+      //   })
+      // }, 2000);
     }
   }
 
