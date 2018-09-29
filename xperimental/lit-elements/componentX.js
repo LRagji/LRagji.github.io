@@ -1,4 +1,4 @@
-import {html, LitElement} from 'https://unpkg.com/lit-element@0.5.0/lit-element.js?module';
+import {html, LitElement} from 'https://unpkg.com/@polymer/lit-element?module';
 class MyElement extends LitElement {
 
     static get properties() {
@@ -13,7 +13,7 @@ class MyElement extends LitElement {
     }
 
     render() {
-      return html`<style> .mood { color: green; } </style>
+      return html`<style> .mood { color: red; } </style>
         Web Components are <span class="mood">${this.mood}</span>!`;
     }
 
