@@ -39,6 +39,9 @@ class gyroElement extends LitElement {
       //   })
       // }, 2000);
     }
+    else{
+      alert("Not applicable");
+    }
   }
 
   handleMotion(e) {
