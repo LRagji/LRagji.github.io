@@ -30,18 +30,14 @@ class gyroElement extends LitElement {
     if (window.DeviceMotionEvent) {
       window.addEventListener('devicemotion', this.handleMotion);
     }
-    else{
-      alert("Not Supported");
-    }
   }
 
   handleMotion(e) {
     if (e.rotationRate.alpha & e.rotationRate.beta & e.rotationRate.gamma) {
       this.isSupported = false;
-      alert("Not Supported");
     } else {
       this.alpha = e.rotationRate.alpha;
-      alert(e.rotationRate.alpha);
+      this.isSupported = true;
     }
   }
 
