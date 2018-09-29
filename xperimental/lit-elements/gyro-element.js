@@ -32,7 +32,9 @@ class gyroElement extends LitElement {
       // setInterval(() => {
       //   this.handleMotion({
       //     rotationRate: {
-      //       alpha: (Math.random() * 100)
+      //       alpha: (Math.random() * 100),
+      //       beta: (Math.random() * 100),
+      //       gamma: (Math.random() * 100)
       //     }
       //   })
       // }, 2000);
@@ -43,7 +45,9 @@ class gyroElement extends LitElement {
     if (e.rotationRate.alpha & e.rotationRate.beta & e.rotationRate.gamma) {
       this.isSupported = false;
     } else {
-      this.alpha = e.rotationRate.alpha;
+      this.alpha = Math.round(e.rotationRate.alpha);
+      this.beta = Math.round(e.rotationRate.beta);
+      this.gamma = Math.round(e.rotationRate.gamma);
       this.isSupported = true;
     }
   }
@@ -56,12 +60,13 @@ class gyroElement extends LitElement {
       border: 2px solid gray;
       border-radius: 50%;
       display: inline-block;
-      transform: rotate(${this.alpha}deg);
   }
   .leveltext{
     margin: 0 auto;
   } </style>
-      <div class="level"><div class="leveltext" >${this.alpha}deg</div></div>`;
+      <div class="level" style="transform: rotate(${this.alpha}deg);"><div class="leveltext">${this.alpha}deg</div></div>
+      <div class="level" style="transform: rotate(${this.beta}deg);"><div class="leveltext">${this.beta}deg</div></div>
+      <div class="level" style="transform: rotate(${this.gamma}deg);"><div class="leveltext">${this.gamma}deg</div></div>`;
   }
 
 }
