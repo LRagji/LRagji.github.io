@@ -49,6 +49,7 @@ class gyroElement extends LitElement {
       this.beta = Math.round(e.rotationRate.beta);
       this.gamma = Math.round(e.rotationRate.gamma);
       this.isSupported = true;
+      alert(this.alpha);
     }
   }
 
