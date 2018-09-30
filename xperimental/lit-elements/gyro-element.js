@@ -95,6 +95,7 @@ class gyroElement extends LitElement {
       border-radius: 50%;
       text-align: center;
       display: inline-block;
+      transition: transform 0.3s ease-in-out
   }
   .leveltext{
     margin: 0 auto;
