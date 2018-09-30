@@ -39,7 +39,6 @@ class gyroElement extends LitElement {
 
   constructor() {
     super();
-
     this.setupDefaultValuesForProperties();
 
     //Setting context for all methods
@@ -94,14 +93,21 @@ class gyroElement extends LitElement {
       background-image: linear-gradient(white 49%, black 51%);
       border: 2px solid gray;
       border-radius: 50%;
+      text-align: center;
       display: inline-block;
   }
   .leveltext{
     margin: 0 auto;
-  } </style>
-      <div class="level" style="transform: rotate(${this.alpha}deg);"><div class="leveltext">${this.alpha}deg</div></div>
-      <div class="level" style="transform: rotate(${this.beta}deg);"><div class="leveltext">${this.beta}deg</div></div>
-      <div class="level" style="transform: rotate(${this.gamma}deg);"><div class="leveltext">${this.gamma}deg</div></div>`
+    position: relative;
+    top: 50%;
+    color:white;
+    font-size:150%;
+  } 
+  </style>
+      <div class="level" style="transform: rotate(${this.alpha}deg);"><div class="leveltext" style="transform: rotate(${this.alpha*-1}deg);">${this.alpha}</div></div>
+      <div class="level" style="transform: rotate(${this.beta}deg);"><div  class="leveltext" style="transform: rotate(${this.beta *-1}deg);">${this.beta}</div></div>
+      <div class="level" style="transform: rotate(${this.gamma}deg);"><div  class="leveltext" style="transform: rotate(${this.gamma *-1}deg);">${this.gamma}</div></div>
+      `
   }
 
 }
