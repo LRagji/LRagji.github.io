@@ -58,15 +58,15 @@ class gyroElement extends LitElement {
     // alert("Event:" + e.rotationRate.alpha);
     let logMessage = "";
     if (Math.abs(this.alpha - e.rotationRate.alpha) > 1) {
-      //logMessage = `alpha:${e.rotationRate.alpha} `;
+      logMessage = `alpha:${e.rotationRate.alpha} `;
       this.alpha = Math.round(e.rotationRate.alpha);
     }
     if (Math.abs(this.beta - e.rotationRate.beta) > 1) {
-      // logMessage += `beta:${e.rotationRate.beta} `;
+       logMessage += `beta:${e.rotationRate.beta} `;
       this.beta = Math.round(e.rotationRate.beta);
     }
     if (Math.abs(this.gamma - e.rotationRate.gamma) > 1) {
-      // logMessage += `gamma:${e.rotationRate.gamma} `;
+      logMessage += `gamma:${e.rotationRate.gamma} `;
       this.gamma = Math.round(e.rotationRate.gamma);
     }
     if (this.isSupported != true)
