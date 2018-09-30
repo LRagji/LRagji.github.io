@@ -105,9 +105,14 @@ class gyroElement extends LitElement {
     font-size:150%;
   } 
   </style>
+  <div style="display:${this.isSupported?'visible':'none'}" >
       <div class="level" style="transform: rotate(${this.alpha}deg);"><div class="leveltext" style="transform: rotate(${this.alpha*-1}deg);">${this.alpha}</div></div>
       <div class="level" style="transform: rotate(${this.beta}deg);"><div  class="leveltext" style="transform: rotate(${this.beta *-1}deg);">${this.beta}</div></div>
       <div class="level" style="transform: rotate(${this.gamma}deg);"><div  class="leveltext" style="transform: rotate(${this.gamma *-1}deg);">${this.gamma}</div></div>
+  </div>
+  <div style="display:${!this.isSupported?'visible':'none'}" >
+  <center><p><b>Your browser doesnot support gyro api :(</b><br/>Works only on chrome.</p></center>
+  </div>    
       `
   }
 
