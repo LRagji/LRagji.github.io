@@ -46,16 +46,16 @@ class gyroElement extends LitElement {
     this.dispose = this.dispose.bind(this);
 
     if (window.DeviceMotionEvent) {
-      //window.addEventListener('devicemotion', this.handleMotion);
-      setInterval(() => {
-        this.handleMotion({
-          rotationRate: {
-            alpha: (Math.random() * 100),
-            beta: (Math.random() * 100),
-            gamma: (Math.random() * 100)
-          }
-        })
-      }, 1000);
+      window.addEventListener('devicemotion', this.handleMotion);
+      // setInterval(() => {
+      //   this.handleMotion({
+      //     rotationRate: {
+      //       alpha: (Math.random() * 100),
+      //       beta: (Math.random() * 100),
+      //       gamma: (Math.random() * 100)
+      //     }
+      //   })
+      // }, 1000);
     }
   }
 
