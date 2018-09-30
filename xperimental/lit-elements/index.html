@@ -6,45 +6,12 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1">
     <script src="https://unpkg.com/@webcomponents/webcomponentsjs@next/webcomponents-loader.js"></script>
-    <script src="./componentX.js"
-            type="module"></script>
     <script src="./gyro-element.js"
             type="module"></script>
-
-    <style>
-        .dot {
-            height: 100px;
-            width: 100px;
-            background-image: linear-gradient(white 49%, black 51%);
-            border: 2px solid gray;
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        .transform {
-            transform: rotate(20deg);
-        }
-    </style>
 </head>
 
 <body>
-    <gyro-element></gyro-element>
-    <!-- <div class="level"
-         style="transform: rotate(${this.alpha}deg);">
-        <div class="leveltext"
-             style="transform: rotate(${this.alpha*-1}deg);">${this.alpha}</div>
-    </div>
-    <div class="level"
-         style="transform: rotate(${this.beta}deg);">
-        <div class="leveltext"
-             style="transform: rotate(${this.beta *-1}deg);">${this.beta}</div>
-    </div>
-    <div class="level"
-         style="transform: rotate(${this.gamma}deg);">
-        <div class="leveltext style="
-             transform:
-             rotate(${this.gamma*-1}deg);">${this.gamma}</div>
-    </div> -->
+    <gyro-element alphasensitivity=10 ></gyro-element>
 </body>
 
 </html>
