@@ -23,10 +23,16 @@ class gyroElement extends LitElement {
 
   constructor() {
     super();
+    //Setting Default values of all properties
     this.isSupported = false;
     this.alpha = 0;
     this.beta = 0;
     this.gamma = 0;
+
+    //Setting context for all methods
+    this.handleMotion = this.handleMotion.bind(this);
+    this.log = this.log.bind(this);
+
     if (window.DeviceMotionEvent) {
       window.addEventListener('devicemotion', this.handleMotion);
       // setInterval(() => {
@@ -41,21 +47,33 @@ class gyroElement extends LitElement {
     }
   }
 
+  log(message) {
+    this.shadowRoot.getElementById('log').innerHTML += message + "<br/>";
+  }
+
   handleMotion(e) {
     // if (e.rotationRate.alpha & e.rotationRate.beta & e.rotationRate.gamma) {
     //   this.isSupported = false;
     // } else {
     // alert("Event:" + e.rotationRate.alpha);
-    if (Math.abs(this.alpha - e.rotationRate.alpha) > 1)
+    let logMessage = "";
+    if (Math.abs(this.alpha - e.rotationRate.alpha) > 1) {
+      //logMessage = `alpha:${e.rotationRate.alpha} `;
       this.alpha = Math.round(e.rotationRate.alpha);
-    if (Math.abs(this.beta - e.rotationRate.beta) > 1)
+    }
+    if (Math.abs(this.beta - e.rotationRate.beta) > 1) {
+      // logMessage += `beta:${e.rotationRate.beta} `;
       this.beta = Math.round(e.rotationRate.beta);
-    if (Math.abs(this.gamma - e.rotationRate.gamma) > 1)
+    }
+    if (Math.abs(this.gamma - e.rotationRate.gamma) > 1) {
+      // logMessage += `gamma:${e.rotationRate.gamma} `;
       this.gamma = Math.round(e.rotationRate.gamma);
+    }
     if (this.isSupported != true)
       this.isSupported = true;
     //alert(this.alpha);
     //}
+    if (logMessage !== "") this.log(logMessage);
   }
 
   render() {
@@ -72,7 +90,8 @@ class gyroElement extends LitElement {
   } </style>
       <div class="level" style="transform: rotate(${this.alpha}deg);"><div class="leveltext">${this.alpha}deg</div></div>
       <div class="level" style="transform: rotate(${this.beta}deg);"><div class="leveltext">${this.beta}deg</div></div>
-      <div class="level" style="transform: rotate(${this.gamma}deg);"><div class="leveltext">${this.gamma}deg</div></div>`;
+      <div class="level" style="transform: rotate(${this.gamma}deg);"><div class="leveltext">${this.gamma}deg</div></div>
+      <div id="log" ></div>`;
   }
 
 }
