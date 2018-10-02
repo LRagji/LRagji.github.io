@@ -56,7 +56,7 @@ class gyroElement extends LitElement {
 
   setupDefaultValuesForProperties() {
     this.gamma = this.beta = this.alpha = 0;
-    this.gammaSensitivity = this.betaSensitivity = this.alphaSensitivity = 10;
+    this.gammaSensitivity = this.betaSensitivity = this.alphaSensitivity = 1;
   }
 
   dispose() {

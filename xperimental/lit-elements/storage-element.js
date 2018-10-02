@@ -53,10 +53,10 @@ class storageElement extends LitElement {
     getAllData(mimeType) {
         return this._getDataArray({
                 counter: localStorage.length - 1,
-                result: []
+                result: {}
             })
             .then((context) => {
-                return new Blob(context.result, {
+                return new Blob([JSON.stringify(context.result)], {
                     type: mimeType
                 });
             })
@@ -66,11 +66,10 @@ class storageElement extends LitElement {
         return new Promise((resolve, reject) => {
             let batchCounter = 0;
             while (context.counter > 0 && batchCounter < 100) {
-                context.result.push(JSON.stringify({
-                    id: context.counter,
+                context.result[context.counter] = {
                     key: localStorage.key(context.counter),
                     value: localStorage.getItem(localStorage.key(context.counter))
-                }));
+                };
                 context.counter--;
                 batchCounter++;
             }
