@@ -1,2 +1,3 @@
-# Elemento
-This repo contains code for a polymer component which uses gyro capabilities of chrome browser
+#Xperimental
+
+This repo contains code for a all the latest, tiniest and greatest experiments that i do on web and controllers of my hobby projects
