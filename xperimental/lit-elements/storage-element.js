@@ -3,6 +3,7 @@ import {
     LitElement
 } from 'https://unpkg.com/@polymer/lit-element?module';
 
+
 class storageElement extends LitElement {
     static get properties() {
         return {
@@ -101,9 +102,14 @@ class storageElement extends LitElement {
 
 
     render() {
-        return html `<p>Current:${this.currentSizeInBytes} bytes of ${this.limitInBytes} 
-        (${parseFloat((this.currentSizeInBytes/this.limitInBytes)*100).toFixed(2)})%</p>
-        <br/>${(new Blob(Object.values(localStorage)).size-this.currentSizeInBytes)}`;
+        return html `
+        <div style="background-color:gray;text-align: center; position: relative">
+        <div style="background-color:blue;width:${(this.currentSizeInBytes/this.limitInBytes)*100}%; transition: width 0.3s ease-in-out">
+           <br/>
+        </div>
+        <span style="z-index:101; top:0%; position: absolute;color:white">${localStorage.length}</span>
+    </div>
+        `;
     }
 }
 

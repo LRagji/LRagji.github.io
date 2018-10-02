@@ -11,18 +11,21 @@
             type="module"></script>
     <script src="./storage-element.js"
             type="module"></script>
+
+
 </head>
 
 <body>
+    <storage-element id="localDB"
+                     limitInBytes=1048576></storage-element>
     <gyro-element id="gyro"
                   betasensitivity=10
                   gammasensitivity=10
                   alphasensitivity=10></gyro-element>
-    <storage-element id="localDB"
-                     limitInBytes=1048576></storage-element>
+    
 
     <button onclick="download()">Download!</button>
-    </form>
+
     <script>
         window.onload = boot
 
@@ -51,6 +54,7 @@
                 link.download = "data.txt";
                 link.click();
                 URL.revokeObjectURL(url);
+                document.getElementById("localDB").clear();
                 document.getElementById("gyro").addEventListener("data-changed", handleData);
             });
         }
