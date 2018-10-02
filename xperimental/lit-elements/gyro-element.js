@@ -2,37 +2,31 @@ import {
   html,
   LitElement
 } from 'https://unpkg.com/@polymer/lit-element?module';
+
 class gyroElement extends LitElement {
 
   static get properties() {
     return {
       alpha: {
-        type: Number,
-        value: 0
+        type: Number
       },
       beta: {
-        type: Number,
-        value: 0
+        type: Number
       },
       gamma: {
-        type: Number,
-        value: 0
+        type: Number
       },
       alphaSensitivity: {
-        type: Number,
-        value: 1
+        type: Number
       },
       betaSensitivity: {
-        type: Number,
-        value: 1
+        type: Number
       },
       gammaSensitivity: {
-        type: Number,
-        value: 1
+        type: Number
       },
       isSupported: {
-        type: Boolean,
-        value: false
+        type: Boolean
       }
     };
   }
@@ -47,16 +41,16 @@ class gyroElement extends LitElement {
 
     if (window.DeviceMotionEvent) {
       window.addEventListener('devicemotion', this.handleMotion);
-      setInterval(() => {
-        this.handleMotion({
-          rotationRate: {
-            alpha: (Math.random() * 100),
-            beta: (Math.random() * 100),
-            gamma: (Math.random() * 100)
-          }
-        })
-      }, 1000);
-      
+      // setInterval(() => {
+      //   this.handleMotion({
+      //     rotationRate: {
+      //       alpha: (Math.random() * 100),
+      //       beta: (Math.random() * 100),
+      //       gamma: (Math.random() * 100)
+      //     }
+      //   })
+      // }, 1000);
+
     }
   }
 
@@ -71,19 +65,33 @@ class gyroElement extends LitElement {
 
   handleMotion(e) {
 
+    let dispatchEvent = false;
     if (Math.abs(this.alpha - e.rotationRate.alpha) > this.alphaSensitivity) {
       this.alpha = Math.round(e.rotationRate.alpha);
       if (this.isSupported !== true) this.isSupported = true;
+      dispatchEvent = true;
     }
 
     if (Math.abs(this.beta - e.rotationRate.beta) > this.betaSensitivity) {
       this.beta = Math.round(e.rotationRate.beta);
       if (this.isSupported !== true) this.isSupported = true;
+      dispatchEvent = true;
     }
 
     if (Math.abs(this.gamma - e.rotationRate.gamma) > this.gammaSensitivity) {
       this.gamma = Math.round(e.rotationRate.gamma);
       if (this.isSupported !== true) this.isSupported = true;
+      dispatchEvent = true;
+    }
+
+    if (dispatchEvent === true) {
+      this.dispatchEvent(new CustomEvent("data-changed", {
+        detail: {
+          "alpha": this.alpha,
+          "gamma": this.gamma,
+          "beta": this.beta
+        }
+      }))
     }
   }
 
