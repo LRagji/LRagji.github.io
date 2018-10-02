@@ -6,12 +6,17 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1">
     <script src="https://unpkg.com/@webcomponents/webcomponentsjs@next/webcomponents-loader.js"></script>
+    <script src="https://unpkg.com/nosleep.js@0.7.0/dist/NoSleep.js"></script>
     <script src="./gyro-element.js"
             type="module"></script>
 </head>
 
 <body>
-    <gyro-element alphasensitivity=10 ></gyro-element>
+    <gyro-element alphasensitivity=10></gyro-element>
+    <script>
+        var noSleep = new NoSleep();
+        noSleep.enable();
+    </script>
 </body>
 
 </html>
