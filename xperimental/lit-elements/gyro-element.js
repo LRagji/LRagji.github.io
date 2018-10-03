@@ -102,11 +102,11 @@ class gyroElement extends LitElement {
     //   }))
     // }
 
-    if (e.accelerationIncludingGravity.x !== null &&
-      e.accelerationIncludingGravity.y !== null &&
-      e.accelerationIncludingGravity.z !== null) {
-      let roll = this._calculateRoll(e.accelerationIncludingGravity.y, e.accelerationIncludingGravity.z, this._convertRadianToDegrees);
-      let pitch = this._calculatePitch(e.accelerationIncludingGravity.x, e.accelerationIncludingGravity.y, e.accelerationIncludingGravity.z, this._convertRadianToDegrees);
+    if (e.acceleration.x !== null &&
+      e.acceleration.y !== null &&
+      e.acceleration.z !== null) {
+      let roll = this._calculateRoll(e.acceleration.y, e.acceleration.z, this._convertRadianToDegrees);
+      let pitch = this._calculatePitch(e.acceleration.x, e.acceleration.y, e.acceleration.z, this._convertRadianToDegrees);
       if (Math.abs(this.alpha - roll) > this.alphaSensitivity) {
         this.alpha = roll;
         if (this.isSupported !== true) this.isSupported = true;
