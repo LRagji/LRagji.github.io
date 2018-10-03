@@ -38,9 +38,9 @@ class gyroElement extends LitElement {
     //Setting context for all methods
     this.handleMotion = this.handleMotion.bind(this);
     this.dispose = this.dispose.bind(this);
-    this._calculateRoll=this._calculateRoll.bind(this);
-    this._calculatePitch=this._calculatePitch.bind(this);
-    this._convertRadianToDegrees=this._convertRadianToDegrees.bind(this);
+    this._calculateRoll = this._calculateRoll.bind(this);
+    this._calculatePitch = this._calculatePitch.bind(this);
+    this._convertRadianToDegrees = this._convertRadianToDegrees.bind(this);
 
     if (window.DeviceMotionEvent) {
       window.addEventListener('devicemotion', this.handleMotion);
@@ -105,9 +105,16 @@ class gyroElement extends LitElement {
     if (e.accelerationIncludingGravity.x !== null &&
       e.accelerationIncludingGravity.y !== null &&
       e.accelerationIncludingGravity.z !== null) {
-      this.alpha = this._calculateRoll(e.accelerationIncludingGravity.y, e.accelerationIncludingGravity.z, this._convertRadianToDegrees);
-      this.beta = this._calculatePitch(e.accelerationIncludingGravity.x,e.accelerationIncludingGravity.y, e.accelerationIncludingGravity.z, this._convertRadianToDegrees);
-      if (this.isSupported !== true) this.isSupported = true;
+      let roll = this._calculateRoll(e.accelerationIncludingGravity.y, e.accelerationIncludingGravity.z, this._convertRadianToDegrees);
+      let pitch = this._calculatePitch(e.accelerationIncludingGravity.x, e.accelerationIncludingGravity.y, e.accelerationIncludingGravity.z, this._convertRadianToDegrees);
+      if (Math.abs(this.alpha - roll) > this.alphaSensitivity) {
+        this.alpha = roll;
+        if (this.isSupported !== true) this.isSupported = true;
+      }
+      if (Math.abs(this.beta - pitch) > this.betaSensitivity) {
+        this.beta = pitch;
+        if (this.isSupported !== true) this.isSupported = true;
+      }
     }
   }
 
