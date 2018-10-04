@@ -15,15 +15,22 @@
 </head>
 
 <body>
-    <roll-element sensitivity=10 id="roll" style="width:100px;height:100px;display:inline-block;padding:10px"></roll-element>
-    <pitch-element sensitivity=10 id="pitch" style="width:100px;height:100px;display:inline-block;padding:10px"></pitch-element>
+    <roll-element sensitivity="10" id="roll" style="width:100px;height:100px;display:inline-block;padding:10px"></roll-element>
+    <pitch-element sensitivity="10" id="pitch" style="width:100px;height:100px;display:inline-block;padding:10px"></pitch-element>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <button style="display:block" onclick="baseline()">Capture Baseline</button>
+
     <!-- <storage-element id="localDB" limitInBytes=1048576>
         </storage-element>
         <gyro-element id="gyro" betasensitivity=2 gammasensitivity=10 alphasensitivity=2></gyro-element>
 
 
         <button onclick="download()">Download!</button>-->
-    <button onclick="baseline()">Capture Baseline</button>
+
 
     <script>
         window.onload = boot1
