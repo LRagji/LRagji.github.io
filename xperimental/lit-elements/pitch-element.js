@@ -76,9 +76,10 @@ class pitchElement extends LitElement {
     }
 
     _handleMotion(e) {
-        if (e.acceleration.y !== null &&
-            e.acceleration.z !== null) {
-            let calculatedPitch = this._calculatePitch(e.acceleration.x, e.acceleration.y, e.acceleration.z, this._convertRadianToDegrees);
+        if (e.accelerationIncludingGravity.x !== null &&
+            e.accelerationIncludingGravity.y !== null
+            e.accelerationIncludingGravity.z !== null) {
+            let calculatedPitch = this._calculatePitch(e.accelerationIncludingGravity.x, e.accelerationIncludingGravity.y, e.accelerationIncludingGravity.z, this._convertRadianToDegrees);
             if (Math.abs(this.pitch - calculatedPitch) > this.sensitivity) {
                 this.pitch = calculatedPitch;
                 if (this._acquireBaseline == true) {

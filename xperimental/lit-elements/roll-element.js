@@ -67,7 +67,7 @@ class rollElement extends LitElement {
 
     _simulateData() {
         this._handleMotion({
-            acceleration: {
+            accelerationIncludingGravity: {
                 x: (Math.random() * 100),
                 y: (Math.random() * 100),
                 z: (Math.random() * 100)
@@ -76,9 +76,9 @@ class rollElement extends LitElement {
     }
 
     _handleMotion(e) {
-        if (e.acceleration.y !== null &&
-            e.acceleration.z !== null) {
-            let calculatedRoll = this._calculateRoll(e.acceleration.y, e.acceleration.z, this._convertRadianToDegrees);
+        if (e.accelerationIncludingGravity.y !== null &&
+            e.accelerationIncludingGravity.z !== null) {
+            let calculatedRoll = this._calculateRoll(e.accelerationIncludingGravity.y, e.accelerationIncludingGravity.z, this._convertRadianToDegrees);
             if (Math.abs(this.roll - calculatedRoll) > this.sensitivity) {
                 this.roll = calculatedRoll;
                 if (this._acquireBaseline == true) {
