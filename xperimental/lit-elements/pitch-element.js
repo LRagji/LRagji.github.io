@@ -67,7 +67,7 @@ class pitchElement extends LitElement {
 
     _simulateData() {
         this._handleMotion({
-            acceleration: {
+            accelerationIncludingGravity: {
                 x: (Math.random() * 100),
                 y: (Math.random() * 100),
                 z: (Math.random() * 100)
