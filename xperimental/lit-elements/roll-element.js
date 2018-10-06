@@ -161,7 +161,7 @@ class rollElement extends LitElement {
             </g>
            </svg>
     </div>
-    <div class="leveltext">B:${parseFloat(this.baseline).toFixed(2)} P:${parseFloat(this.roll - this.baseline).toFixed(2)}\xB0 P:${parseFloat(this.roll).toFixed(2)} </div>
+    <div class="leveltext">${parseFloat(this.roll).toFixed(2)}\xB0</div>
         `
     }
 

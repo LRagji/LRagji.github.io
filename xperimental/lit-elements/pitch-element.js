@@ -160,7 +160,7 @@ class pitchelement extends LitElement {
       </g>
       </svg>
     </div>
-    <div class="leveltext">B:${parseFloat(this.baseline).toFixed(2)} R:${parseFloat(this.pitch - this.baseline).toFixed(2)}\xB0 RR:${parseFloat(this.pitch).toFixed(2)} </div>
+    <div class="leveltext">${parseFloat(this.pitch).toFixed(2)}\xB0</div>
         `
     }
 
