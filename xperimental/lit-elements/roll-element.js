@@ -47,8 +47,7 @@ class rollElement extends LitElement {
 
     start() {
         if (window.DeviceMotionEvent) {
-            window.addEventListener('devicemotion', this._handleMotion);
-            this.isSupported = true;
+            window.addEventListener('devicemotion', this._handleMotion)
             //setInterval(this._simulateData, 1000);
         }
         else {
@@ -85,6 +84,7 @@ class rollElement extends LitElement {
             e.accelerationIncludingGravity.y !== null &&
             e.accelerationIncludingGravity.z !== null) {
             let calculatedroll = this._calculateRoll(e.accelerationIncludingGravity.x, e.accelerationIncludingGravity.y, e.accelerationIncludingGravity.z, this._convertRadianToDegrees);
+            if (this.isSupported !== true) this.isSupported = true;
             if (this.inverseCordinates === true) calculatedroll = calculatedroll * -1;
             if (Math.abs(this.roll - calculatedroll) > this.sensitivity) {
                 this.roll = calculatedroll;
@@ -118,7 +118,9 @@ class rollElement extends LitElement {
             float:left;
             overflow:hidden;
         }
-
+        .disabled{
+            filter: grayscale(100%); 
+        }
         .leveltext {
            float:left;
            clear:left;
@@ -126,7 +128,7 @@ class rollElement extends LitElement {
            width:100%;
         }
     </style>
-    <div class="level" style="transform: rotate(${this.roll - this.baseline}deg);">
+    <div class="${this.isSupported ? "level" : "level disabled"}" style="transform: rotate(${this.roll - this.baseline}deg);">
            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="50%" height="100%"
             viewBox="0 0 240.000000 185.000000" preserveAspectRatio="xMidYMid meet">
             <g transform="translate(0.000000,185.000000) scale(0.100000,-0.100000)"
