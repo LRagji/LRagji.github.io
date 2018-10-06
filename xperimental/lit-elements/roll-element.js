@@ -105,7 +105,7 @@ class rollElement extends LitElement {
             height: 100%;
             width: 100%;
             border: 2px solid gray;
-            background-image: linear-gradient(#0060f9 85%, black 15%);
+            background-image: linear-gradient(#0060f9 69%, black 31%);
             border-radius: 50%;
             text-align: center;
             transition: transform 0.3s ease-in-out;
@@ -121,7 +121,7 @@ class rollElement extends LitElement {
         }
     </style>
     <div class="level" style="transform: rotate(${this.roll - this.baseline}deg);">
-           <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+           <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="50%" height="100%"
             viewBox="0 0 240.000000 185.000000" preserveAspectRatio="xMidYMid meet">
             <g transform="translate(0.000000,185.000000) scale(0.100000,-0.100000)"
             fill="#FFFFFF" stroke="none">
