@@ -105,7 +105,7 @@ class pitchElement extends LitElement {
             height: 100%;
             width: 100%;
             border: 2px solid gray;
-            background-image: linear-gradient(#0060f9 69%, black 31%);
+            background-image: linear-gradient(#0060f9 85%, black 15%);
             border-radius: 50%;
             text-align: center;
             transition: transform 0.3s ease-in-out;
