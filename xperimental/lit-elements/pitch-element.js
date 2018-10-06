@@ -126,7 +126,7 @@ class pitchelement extends LitElement {
            width:100%;
         }
     </style>
-    <div class="${this.isSupported ? "level" : "level disabled"} style="transform: rotate(${this.pitch - this.baseline}deg);">
+    <div class="${this.isSupported ? "level" : "level disabled"}" style="transform: rotate(${this.pitch - this.baseline}deg);">
     <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
     viewBox="0 0 508.000000 181.000000"
        preserveAspectRatio="xMidYMid meet">
