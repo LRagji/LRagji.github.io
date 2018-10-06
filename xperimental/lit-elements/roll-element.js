@@ -33,7 +33,7 @@ class rollElement extends LitElement {
         this.stop = this.stop.bind(this);
         this.start = this.start.bind(this);
         this.captureBaseline = this.captureBaseline.bind(this);
-        this._calculatePitch = this._calculatePitch.bind(this);
+        this._calculateRoll = this._calculateRoll.bind(this);
         this._handleMotion = this._handleMotion.bind(this);
         this._convertRadianToDegrees = this._convertRadianToDegrees.bind(this);
         this._simulateData = this._simulateData.bind(this);

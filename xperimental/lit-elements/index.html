@@ -9,47 +9,47 @@
     <script src="./gyro-element.js" type="module"></script>
     <script src="./storage-element.js" type="module"></script>
     <script src="./pitch-element.js" type="module"></script>
-    <!-- <script src="./pitch-element.js" type="module"></script> -->
+    <script src="./roll-element.js" type="module"></script>
 
 
 </head>
 
 <body>
     <pitch-element sensitivity="1" id="pitch" style="width:100px;height:100px;display:inline-block;padding:10px">
-        </pitch-element>
-        <!-- <pitch-element sensitivity="1" id="pitch" style="width:100px;height:100px;display:inline-block;padding:10px"></pitch-element> -->
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <gyro-element id="gyro" betasensitivity=10 gammasensitivity=10 alphasensitivity=10></gyro-element>
+    </pitch-element>
+    <roll-element sensitivity="1" id="roll" style="width:100px;height:100px;display:inline-block;padding:10px"></roll-element>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <gyro-element id="gyro" betasensitivity=10 gammasensitivity=10 alphasensitivity=10></gyro-element>
 
-        <button style="display:block" onclick="baseline()">Capture Baseline</button>
+    <button style="display:block" onclick="baseline()">Capture Baseline</button>
 
-        <!-- <storage-element id="localDB" limitInBytes=1048576>
+    <!-- <storage-element id="localDB" limitInBytes=1048576>
         </storage-element>
        
 
         <button onclick="download()">Download!</button>-->
 
 
-        <script>
-            window.onload = boot1
+    <script>
+        window.onload = boot1
 
-            function boot1() {
-                // let roll = document.getElementById("roll");
-                // roll.start();
-                let pitch = document.getElementById("pitch");
-                pitch.start();
-            }
+        function boot1() {
+            let roll = document.getElementById("roll");
+            roll.start();
+            let pitch = document.getElementById("pitch");
+            pitch.start();
+        }
 
-            function baseline() {
-                // let roll = document.getElementById("roll");
-                // roll.captureBaseline();
-                let pitch = document.getElementById("pitch");
-                pitch.captureBaseline();
-            }
+        function baseline() {
+            let roll = document.getElementById("roll");
+            roll.captureBaseline();
+            let pitch = document.getElementById("pitch");
+            pitch.captureBaseline();
+        }
 
             // function boot() {
             //     //No Sleep
@@ -80,7 +80,7 @@
             //         document.getElementById("gyro").addEventListener("data-changed", handleData);
             //     });
             // }
-        </script>
+    </script>
 </body>
 
 </html>
