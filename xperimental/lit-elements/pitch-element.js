@@ -16,6 +16,9 @@ class pitchelement extends LitElement {
             baseline: {
                 type: Number
             },
+            inverseCordinates: {
+                type: Boolean
+            },
             _acquireBaseline: {
                 type: Boolean
             }
@@ -29,6 +32,7 @@ class pitchelement extends LitElement {
         this.pitch = 0;
         this._acquireBaseline = false;
         this.baseline = 0;
+        this.inverseCordinates = false
 
         this.stop = this.stop.bind(this);
         this.start = this.start.bind(this);
@@ -79,6 +83,7 @@ class pitchelement extends LitElement {
         if (e.accelerationIncludingGravity.y !== null &&
             e.accelerationIncludingGravity.z !== null) {
             let calculatedPitch = this._calculatePitch(e.accelerationIncludingGravity.y, e.accelerationIncludingGravity.z, this._convertRadianToDegrees);
+            if (this.inverseCordinates === true) calculatedPitch = calculatedPitch * -1;
             if (Math.abs(this.pitch - calculatedPitch) > this.sensitivity) {
                 this.pitch = calculatedPitch;
                 if (this._acquireBaseline == true) {

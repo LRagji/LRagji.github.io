@@ -16,6 +16,10 @@ class rollElement extends LitElement {
             baseline: {
                 type: Number
             },
+            inverseCordinates:
+            {
+                type: Boolean,
+            },
             _acquireBaseline: {
                 type: Boolean
             }
@@ -29,6 +33,7 @@ class rollElement extends LitElement {
         this.roll = 0;
         this._acquireBaseline = false;
         this.baseline = 0;
+        this.inverseCordinates = false;
 
         this.stop = this.stop.bind(this);
         this.start = this.start.bind(this);
@@ -80,6 +85,7 @@ class rollElement extends LitElement {
             e.accelerationIncludingGravity.y !== null &&
             e.accelerationIncludingGravity.z !== null) {
             let calculatedroll = this._calculateRoll(e.accelerationIncludingGravity.x, e.accelerationIncludingGravity.y, e.accelerationIncludingGravity.z, this._convertRadianToDegrees);
+            if (this.inverseCordinates === true) calculatedroll = calculatedroll * -1;
             if (Math.abs(this.roll - calculatedroll) > this.sensitivity) {
                 this.roll = calculatedroll;
                 if (this._acquireBaseline == true) {
