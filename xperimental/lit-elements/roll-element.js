@@ -1,13 +1,13 @@
 import { html, LitElement } from 'https://unpkg.com/@polymer/lit-element?module';
 
-class pitchElement extends LitElement {
+class rollElement extends LitElement {
 
     static get properties() {
         return {
             isSupported: {
                 type: Boolean
             },
-            pitch: {
+            roll: {
                 type: Number
             },
             sensitivity: {
@@ -26,7 +26,7 @@ class pitchElement extends LitElement {
         super();
         this.isSupported = false;
         this.sensitivity = 1;
-        this.pitch = 0;
+        this.roll = 0;
         this._acquireBaseline = false;
         this.baseline = 0;
 
@@ -79,18 +79,18 @@ class pitchElement extends LitElement {
         if (e.accelerationIncludingGravity.x !== null &&
             e.accelerationIncludingGravity.y !== null &&
             e.accelerationIncludingGravity.z !== null) {
-            let calculatedPitch = this._calculatePitch(e.accelerationIncludingGravity.x, e.accelerationIncludingGravity.y, e.accelerationIncludingGravity.z, this._convertRadianToDegrees);
-            if (Math.abs(this.pitch - calculatedPitch) > this.sensitivity) {
-                this.pitch = calculatedPitch;
+            let calculatedroll = this._calculateRoll(e.accelerationIncludingGravity.x, e.accelerationIncludingGravity.y, e.accelerationIncludingGravity.z, this._convertRadianToDegrees);
+            if (Math.abs(this.roll - calculatedroll) > this.sensitivity) {
+                this.roll = calculatedroll;
                 if (this._acquireBaseline == true) {
-                    this.baseline = this.pitch;
+                    this.baseline = this.roll;
                     this._acquireBaseline = false;
                 }
             }
         }
     }
 
-    _calculatePitch(x, y, z, conversionFunction) {
+    _calculateRoll(x, y, z, conversionFunction) {
         return conversionFunction(Math.atan2((x * -1), Math.sqrt((y * y + z))));
     }
 
@@ -120,7 +120,7 @@ class pitchElement extends LitElement {
            width:100%;
         }
     </style>
-    <div class="level" style="transform: rotate(${this.pitch - this.baseline}deg);">
+    <div class="level" style="transform: rotate(${this.roll - this.baseline}deg);">
            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
             viewBox="0 0 240.000000 185.000000" preserveAspectRatio="xMidYMid meet">
             <g transform="translate(0.000000,185.000000) scale(0.100000,-0.100000)"
@@ -155,10 +155,10 @@ class pitchElement extends LitElement {
             </g>
            </svg>
     </div>
-    <div class="leveltext">B:${parseFloat(this.baseline).toFixed(2)} P:${parseFloat(this.pitch - this.baseline).toFixed(2)}\xB0 P:${parseFloat(this.pitch).toFixed(2)} </div>
+    <div class="leveltext">B:${parseFloat(this.baseline).toFixed(2)} P:${parseFloat(this.roll - this.baseline).toFixed(2)}\xB0 P:${parseFloat(this.roll).toFixed(2)} </div>
         `
     }
 
 }
 
-customElements.define('pitch-element', pitchElement);
+customElements.define('roll-element', rollElement);
