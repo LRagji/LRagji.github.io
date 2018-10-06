@@ -7,7 +7,7 @@ class pitchelement extends LitElement {
             isSupported: {
                 type: Boolean
             },
-            roll: {
+            pitch: {
                 type: Number
             },
             sensitivity: {
@@ -26,14 +26,14 @@ class pitchelement extends LitElement {
         super();
         this.isSupported = false;
         this.sensitivity = 1;
-        this.roll = 0;
+        this.pitch = 0;
         this._acquireBaseline = false;
         this.baseline = 0;
 
         this.stop = this.stop.bind(this);
         this.start = this.start.bind(this);
         this.captureBaseline = this.captureBaseline.bind(this);
-        this._calculateRoll = this._calculateRoll.bind(this);
+        this._calculatePitch = this._calculatePitch.bind(this);
         this._handleMotion = this._handleMotion.bind(this);
         this._convertRadianToDegrees = this._convertRadianToDegrees.bind(this);
         this._simulateData = this._simulateData.bind(this);
@@ -78,18 +78,18 @@ class pitchelement extends LitElement {
     _handleMotion(e) {
         if (e.accelerationIncludingGravity.y !== null &&
             e.accelerationIncludingGravity.z !== null) {
-            let calculatedRoll = this._calculateRoll(e.accelerationIncludingGravity.y, e.accelerationIncludingGravity.z, this._convertRadianToDegrees);
-            if (Math.abs(this.roll - calculatedRoll) > this.sensitivity) {
-                this.roll = calculatedRoll;
+            let calculatedPitch = this._calculatePitch(e.accelerationIncludingGravity.y, e.accelerationIncludingGravity.z, this._convertRadianToDegrees);
+            if (Math.abs(this.pitch - calculatedPitch) > this.sensitivity) {
+                this.pitch = calculatedPitch;
                 if (this._acquireBaseline == true) {
-                    this.baseline = this.roll;
+                    this.baseline = this.pitch;
                     this._acquireBaseline = false;
                 }
             }
         }
     }
 
-    _calculateRoll(y, z, conversionFunction) {
+    _calculatePitch(y, z, conversionFunction) {
         return conversionFunction(Math.atan2(y, z));
     }
 
@@ -155,7 +155,7 @@ class pitchelement extends LitElement {
       </g>
       </svg>
     </div>
-    <div class="leveltext">B:${parseFloat(this.baseline).toFixed(2)} R:${parseFloat(this.roll - this.baseline).toFixed(2)}\xB0 RR:${parseFloat(this.roll).toFixed(2)} </div>
+    <div class="leveltext">B:${parseFloat(this.baseline).toFixed(2)} R:${parseFloat(this.pitch - this.baseline).toFixed(2)}\xB0 RR:${parseFloat(this.pitch).toFixed(2)} </div>
         `
     }
 
