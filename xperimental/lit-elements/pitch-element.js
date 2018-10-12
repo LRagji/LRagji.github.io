@@ -1,4 +1,7 @@
-import { html, LitElement } from 'https://unpkg.com/@polymer/lit-element?module';
+import {
+    html,
+    LitElement
+} from 'https://unpkg.com/@polymer/lit-element?module';
 
 class pitchelement extends LitElement {
 
@@ -48,8 +51,7 @@ class pitchelement extends LitElement {
         if (window.DeviceMotionEvent) {
             window.addEventListener('devicemotion', this._handleMotion);
             //setInterval(this._simulateData, 1000);
-        }
-        else {
+        } else {
             setInterval(this._simulateData, 1000);
             this.isSupported = false;
         }
@@ -58,8 +60,7 @@ class pitchelement extends LitElement {
     stop() {
         if (this.isSupported === true) {
             window.removeEventListener('devicemotion', this._handleMotion);
-        }
-        else {
+        } else {
             clearInterval(this._simulateData);
         }
     }
@@ -103,12 +104,13 @@ class pitchelement extends LitElement {
     }
 
     render() {
-        return html`
+        return html `
         <style>
         .level {
-            height: 100%;
-            width: 100%;
-            border: 2px solid gray;
+            height: 80%;
+            width: 80%;
+            margin-left:10%;
+            border: thin solid gray;
             background-image: linear-gradient(#0060f9 69%, black 31%);
             border-radius: 50%;
             text-align: center;
@@ -126,7 +128,8 @@ class pitchelement extends LitElement {
            width:100%;
         }
     </style>
-    <div class="${this.isSupported ? "level" : "level disabled"}" style="transform: rotate(${this.pitch - this.baseline}deg);">
+    <div  class="${this.isSupported ? "" : "disabled"}" style="width:100%; height:100%;" >
+    <div class="level" style="transform: rotate(${this.pitch - this.baseline}deg);">
     <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
     viewBox="0 0 508.000000 181.000000"
        preserveAspectRatio="xMidYMid meet">
@@ -162,8 +165,8 @@ class pitchelement extends LitElement {
       </g>
       </svg>
     </div>
-    <div class="leveltext">${parseFloat(this.pitch).toFixed(2)}\xB0</div>
-        `
+    <div class="leveltext" >${parseFloat(this.pitch).toFixed(2)}\xB0</div>
+    </div>    `
     }
 
 }

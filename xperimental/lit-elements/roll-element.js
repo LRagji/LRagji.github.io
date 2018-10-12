@@ -108,8 +108,9 @@ class rollElement extends LitElement {
         return html`
         <style>
         .level {
-            height: 100%;
-            width: 100%;
+            height: 80%;
+            width: 80%;
+            margin-left:10%;
             border: 2px solid gray;
             background-image: linear-gradient(#0060f9 69%, black 31%);
             border-radius: 50%;
@@ -128,7 +129,8 @@ class rollElement extends LitElement {
            width:100%;
         }
     </style>
-    <div class="${this.isSupported ? "level" : "level disabled"}" style="transform: rotate(${this.roll - this.baseline}deg);">
+    <div class="${this.isSupported ? "" : "disabled"}" style="width:100%; height:100%;" >
+    <div class="level" style="transform: rotate(${this.roll - this.baseline}deg);">
            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="50%" height="100%"
             viewBox="0 0 240.000000 185.000000" preserveAspectRatio="xMidYMid meet">
             <g transform="translate(0.000000,185.000000) scale(0.100000,-0.100000)"
@@ -164,7 +166,7 @@ class rollElement extends LitElement {
            </svg>
     </div>
     <div class="leveltext">${parseFloat(this.roll).toFixed(2)}\xB0</div>
-        `
+    </div>   `
     }
 
 }
