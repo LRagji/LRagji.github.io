@@ -3,61 +3,83 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://unpkg.com/@webcomponents/webcomponentsjs@next/webcomponents-loader.js"></script>
     <script src="https://unpkg.com/nosleep.js@0.7.0/dist/NoSleep.js"></script>
-    <script src="./gyro-element.js"
-            type="module"></script>
-    <script src="./storage-element.js"
-            type="module"></script>
+    <script src="./gyro-element.js" type="module"></script>
+    <script src="./storage-element.js" type="module"></script>
+    <script src="./pitch-element.js" type="module"></script>
+    <script src="./roll-element.js" type="module"></script>
 
 
 </head>
 
 <body>
-    <storage-element id="localDB"
-                     limitInBytes=1048576></storage-element>
-    <gyro-element id="gyro"
-                  betasensitivity=2
-                  gammasensitivity=10
-                  alphasensitivity=2></gyro-element>
-    
+    <pitch-element inversecordinates="true" sensitivity="1" id="pitch" style="width:100px;height:100px;display:inline-block;padding:10px">
+    </pitch-element>
+    <roll-element sensitivity="1" id="roll" style="width:100px;height:100px;display:inline-block;padding:10px"></roll-element>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <gyro-element id="gyro" betasensitivity=10 gammasensitivity=10 alphasensitivity=10></gyro-element>
 
-    <button onclick="download()">Download!</button>
+    <button style="display:block" onclick="baseline()">Capture Baseline</button>
+
+    <!-- <storage-element id="localDB" limitInBytes=1048576>
+        </storage-element>
+       
+
+        <button onclick="download()">Download!</button>-->
+
 
     <script>
-        window.onload = boot
+        window.onload = boot1
 
-        function boot() {
-            //No Sleep
-            let noSleep = new NoSleep();
-            noSleep.enable();
-            //End No Sleep
-
-            document.getElementById("localDB").clear();
-
-            document.getElementById("gyro").addEventListener("data-changed", handleData);
-
+        function boot1() {
+            let roll = document.getElementById("roll");
+            roll.start();
+            let pitch = document.getElementById("pitch");
+            pitch.start();
         }
 
-        function handleData(e) {
-            document.getElementById("localDB").setItem(new Date().getTime(), JSON.stringify(e.detail));
+        function baseline() {
+            let roll = document.getElementById("roll");
+            roll.captureBaseline();
+            let pitch = document.getElementById("pitch");
+            pitch.captureBaseline();
         }
 
-        function download(e) {
-            document.getElementById("gyro").removeEventListener("data-changed", handleData)
-            document.getElementById("localDB").getAllData("application/octet-stream").then((blob) => {
-                var url = URL.createObjectURL(blob);
-                var link = document.createElement("a");
-                link.href = url;
-                link.download = "data.txt";
-                link.click();
-                URL.revokeObjectURL(url);
-                document.getElementById("localDB").clear();
-                document.getElementById("gyro").addEventListener("data-changed", handleData);
-            });
-        }
+            // function boot() {
+            //     //No Sleep
+            //     let noSleep = new NoSleep();
+            //     noSleep.enable();
+            //     //End No Sleep
+
+            //     document.getElementById("localDB").clear();
+
+            //     document.getElementById("gyro").addEventListener("data-changed", handleData);
+
+            // }
+
+            // function handleData(e) {
+            //     document.getElementById("localDB").setItem(new Date().getTime(), JSON.stringify(e.detail));
+            // }
+
+            // function download(e) {
+            //     document.getElementById("gyro").removeEventListener("data-changed", handleData)
+            //     document.getElementById("localDB").getAllData("application/octet-stream").then((blob) => {
+            //         var url = URL.createObjectURL(blob);
+            //         var link = document.createElement("a");
+            //         link.href = url;
+            //         link.download = "data.txt";
+            //         link.click();
+            //         URL.revokeObjectURL(url);
+            //         document.getElementById("localDB").clear();
+            //         document.getElementById("gyro").addEventListener("data-changed", handleData);
+            //     });
+            // }
     </script>
 </body>
 
