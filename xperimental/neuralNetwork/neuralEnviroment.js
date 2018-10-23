@@ -2,6 +2,7 @@ import {
     html,
     LitElement
 } from 'https://unpkg.com/@polymer/lit-element?module';
+import {} from '../commonElements/keyValuePair.js'
 
 class neuralCanvas extends LitElement {
     static get properties() {
@@ -38,11 +39,10 @@ class neuralCanvas extends LitElement {
             border: 1px solid white;
         }
         </style>
-        <script src="../commonElements/keyValuePair.js" type="module"></script>
         <table class="table">
-    <tr><td colspan="2" ><canvas id="universe"  ></canvas></td></tr>
-    <tr><td><key-value></key-value></td>
-    <td>Outputs:2</td></tr>
+    <tr><td colspan="2" ><canvas id="universe"></canvas></td></tr>
+    <tr><td><key-value key="Inputs" value="${this.inputs}"></key-value></td>
+    <td><key-value key="Outputs" value="${this.outputs}"></key-value></td></tr>
     <tr><td colspan="2" ></td></tr>
 </table>
      
